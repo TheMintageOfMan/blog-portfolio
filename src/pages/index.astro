@@ -8,43 +8,513 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image="/mypic.jpg" />
+		<style>
+			main {
+				width: 860px;
+				max-width: calc(100% - 2em);
+				font-family: "Gentium Plus", Georgia, serif;
+				padding: 0 1em 1em 1em;
+			}
+			.hero {
+				text-align: center;
+				padding: 0.5em 0 1em 0;
+			}
+			.hero h1 {
+				font-size: 3.2em;
+				letter-spacing: 0.04em;
+				margin: 0.5em 0 0.15em 0;
+				font-weight: 700;
+				color: #000;
+				font-family: "Gentium Plus", Georgia, serif;
+			}
+			.hero h1 a {
+				color: #000;
+				text-decoration: none;
+			}
+			.hero h1 a:hover {
+				text-decoration: underline;
+			}
+			.hero .role {
+				font-size: 1.2em;
+				color: #000;
+				margin: 0.2em 0 0 0;
+				font-weight: 700;
+			}
+			.hero .org {
+				font-size: 1.45em;
+				color: #000;
+				margin: 0.1em 0 0 0;
+				font-weight: 700;
+			}
+			.hero .org a {
+				color: #000;
+				text-decoration: none;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+			}
+			.hero .org a:hover {
+				text-decoration: underline;
+			}
+			.hero .org img {
+				width: 34px;
+				height: 34px;
+				object-fit: contain;
+				border: 1px solid #000;
+				background: #fff;
+				border-radius: 0;
+			}
+			.hero .contact {
+				display: block;
+				max-width: 660px;
+				margin: 1.2em auto 1.2em auto;
+				font-size: 0.98em;
+				color: #000;
+				text-align: left;
+			}
+			.hero .contact-line {
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				gap: 0.5em;
+				margin: 0.45em 0;
+				text-align: left;
+			}
+			.hero .contact-left,
+			.hero .contact-right {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4em;
+			}
+			.hero .contact a {
+				color: #000;
+				text-decoration: none;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35em;
+			}
+			.hero .contact a:hover {
+				text-decoration: underline;
+			}
+			.mini-logo {
+				display: inline-flex;
+				width: 32px;
+				height: 32px;
+				min-width: 32px;
+				align-items: center;
+				justify-content: center;
+				border: 1px solid #000;
+				background: #fff;
+				padding: 2px;
+				font-family: "Gentium Plus", Georgia, serif;
+				font-size: 20px;
+				font-weight: 700;
+				color: #000;
+				line-height: 1;
+			}
+			.mini-logo svg {
+				width: 24px;
+				height: 24px;
+				display: block;
+			}
+			.hero .sub {
+				font-size: 1.05em;
+				color: #000;
+				max-width: 660px;
+				margin: 0.8em auto 0 auto;
+				line-height: 1.6;
+				text-align: justify;
+			}
+			.portrait-wrap {
+				display: flex;
+				justify-content: center;
+				margin: 0 auto;
+			}
+			.portrait-link {
+				display: inline-block;
+				line-height: 0;
+			}
+			.portrait {
+				width: 220px;
+				height: 220px;
+				object-fit: cover;
+				border-radius: 0;
+				border: 2px solid #000;
+				box-shadow: none;
+				background: #fff;
+			}
+			.divider {
+				width: 100%;
+				height: 0;
+				border-top: 2px solid #000;
+				margin: 2em auto;
+			}
+			section.resume {
+				margin: 0 0 2.2em 0;
+			}
+			section.resume > h2 {
+				font-size: 1.7em;
+				margin: 0 0 0.8em 0;
+				padding-bottom: 0.3em;
+				border-bottom: 2px solid #000;
+				color: #000;
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				cursor: pointer;
+				user-select: none;
+			}
+			section.resume > h2:hover .toggle {
+				background: #000;
+				color: #fff;
+			}
+			.toggle {
+				margin-left: auto;
+				display: inline-flex;
+				width: 30px;
+				height: 30px;
+				min-width: 30px;
+				align-items: center;
+				justify-content: center;
+				border: 1px solid #000;
+				background: #fff;
+				color: #000;
+				font-size: 20px;
+				font-weight: 700;
+				line-height: 1;
+			}
+			section.resume.collapsed .card {
+				display: none;
+			}
+			.card {
+				background: #fff;
+				border: 1px solid #000;
+				border-radius: 0;
+				padding: 0.65em 0.75em;
+				margin: 0 0 0.65em 0;
+				box-shadow: none;
+			}
+			.card h3 {
+				margin: 0 0 0.2em 0;
+				font-size: 1.25em;
+				line-height: 1.3;
+				color: #000;
+				font-weight: 700;
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+			}
+			.logo {
+				display: inline-flex;
+				width: 56px;
+				height: 56px;
+				min-width: 56px;
+				align-items: center;
+				justify-content: center;
+				border: 1px solid #000;
+				background: #fff;
+				padding: 2px;
+			}
+			.logo svg {
+				width: 22px;
+				height: 22px;
+				display: block;
+			}
+			.logo img {
+				width: 46px;
+				height: 46px;
+				object-fit: contain;
+				display: block;
+				border-radius: 0;
+			}
+			.card .meta {
+				margin: 0 0 0.15em 0;
+				color: #000;
+				font-size: 1.18em;
+				font-weight: 700;
+				line-height: 1.3;
+			}
+			.card .date {
+				margin: 0 0 0.1em 0;
+				color: #000;
+				font-size: 0.95em;
+			}
+			.card .location {
+				margin: 0 0 0.3em 0;
+				color: #000;
+				font-size: 0.95em;
+			}
+			.card ul {
+				margin: 0.3em 0 0 1.1em;
+				padding: 0;
+				color: #000;
+			}
+			.card li {
+				margin: 0 0 0.25em 0;
+				font-size: 1em;
+				line-height: 1.5;
+				color: #000;
+			}
+			.tagline {
+				display: inline-block;
+				background: #fff;
+				color: #000;
+				border: none;
+				padding: 0;
+				border-radius: 0;
+				font-size: 0.95em;
+				margin-top: 1em;
+			}
+			@media (max-width: 720px) {
+				.hero h1 {
+					font-size: 2.3em;
+				}
+				.hero .role {
+					font-size: 1.05em;
+				}
+				.hero .org {
+					font-size: 1.2em;
+				}
+				.hero .contact {
+					text-align: left;
+				}
+				main {
+					padding: 1.2em 1em 1.8em 1em;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<div class="hero">
+				<div class="portrait-wrap">
+					<a class="portrait-link" href="/" aria-label="Go to home">
+						<img class="portrait" src="/mypic.jpg" alt="Portrait of M A Rahman" width="440" height="440" />
+					</a>
+				</div>
+				<h1><a href="/">M A Rahman</a></h1>
+				<p class="role">Data Center Critical Infrastructure Electrical Engineer</p>
+				<p class="org"><a href="https://aws.amazon.com/" target="_blank" rel="noopener"><img src="/logos/aws.jpg" alt="AWS logo" />Amazon Web Services (AWS)</a></p>
+				<div class="contact">
+					<div class="contact-line">
+						<a href="https://www.linkedin.com/in/x-rahman" target="_blank" rel="noopener"><span class="mini-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="square"><rect x="3" y="3" width="18" height="18"/><path d="M8 10v7M8 7v.5M12 17v-4a2 2 0 0 1 4 0v4"/></svg></span>linkedin.com/in/x-rahman</a>
+					</div>
+					<div class="contact-line">
+						<span class="mini-logo" aria-hidden="true">@</span>
+						<a href="mailto:contactme@marahman.net">contactme@marahman.net</a>
+					</div>
+					<div class="contact-line">
+						<span class="mini-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.8" stroke-linecap="square"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span>Richland, WA, USA (Willing to Relocate)
+					</div>
+				</div>
+				<p class="sub">
+					Electrical Engineer and Data Scientist (with dual Master of Science in Electrical Engineering and Data Science), specializing in mission-critical environments/infrastructure, hyper-scalar data centers, electrical power systems, controls engineering, industrial automation, embedded systems, artificial intelligence, and IoT solutions. Currently ensuring operational excellence and reliability for Amazon Web Services (AWS) data centers as a Critical Infrastructure Electrical Engineer. Proven ability to design, test, and optimize high-value electrical systems while achieving 100% compliance with NEC, UL, and NFPA standards.
+				</p>
+			</div>
+
+			<div class="divider"></div>
+
+			<section class="resume">
+				<h2 role="button" tabindex="0" aria-expanded="true"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="square"><path d="M3 7h18v10H3z"/><path d="M3 10h18"/><path d="M7 14h4M7 17h7"/></svg></span>Professional Experience<span class="toggle" aria-hidden="true">−</span></h2>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><img src="/logos/aws.jpg" alt="AWS logo" /></span>Data Center Critical Infrastructure Electrical Engineer - Regional Field Engineer</h3>
+					<p class="meta">Amazon Web Services (AWS)</p>
+					<p class="date">Sep 2024 - Present</p>
+					<p class="location">Boardman, Oregon, United States</p>
+					<ul><li>Data Center Field Services Engineering — ensuring operational excellence and reliability for AWS data centers.</li></ul>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><img src="/logos/sdstate.jpg" alt="South Dakota State University logo" /></span>Graduate Teaching Assistant</h3>
+					<p class="meta">South Dakota State University</p>
+					<p class="date">Aug 2022 - May 2024</p>
+					<p class="location">Brookings, South Dakota, United States</p>
+					<ul>
+						<li>Allocated resources and students to work on state approved and industrial projects in collaboration with the department and faculty.</li>
+						<li>Managed students on projects and assignments for academic and research purposes, ensuring a 95% project completion rate within original timeframes.</li>
+						<li>Instructed undergraduates on microcontrollers, electronic circuit design, electric power systems, MATLAB and Simulink with a 98% student success rate.</li>
+					</ul>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><img src="/logos/malloy.jpg" alt="Malloy Electric logo" /></span>Electrical Panel &amp; Switch Gear Design Engineer</h3>
+					<p class="meta">Malloy Electric</p>
+					<p class="date">Jun 2023 - Dec 2023</p>
+					<p class="location">Sioux Falls, South Dakota, United States</p>
+					<ul>
+						<li>Designed bespoke industrial automation control panels, MCCs, protection/relay panels and switchboards up to $150,000 using EPLAN Pro Panel.</li>
+						<li>Developed software in Python and C++ to aid design engineers, reducing fabrication design time by 2-3x.</li>
+						<li>Evaluated and tested completed panels for NEC and UL compliance, achieving 100% compliance.</li>
+					</ul>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><img src="/logos/starship.jpg" alt="Starship Technologies logo" /></span>Robotic Customer Experience Associate</h3>
+					<p class="meta">Starship Technologies</p>
+					<p class="date">Feb 2022 - Apr 2022</p>
+					<p class="location">Brookings, South Dakota, United States</p>
+					<ul>
+						<li>Conducted systems diagnostics and robot health-checks for autonomous delivery systems, ensuring 99% uptime.</li>
+						<li>Operated interface and relay network between starships and hub platform; created analysis reports with Tableau and Power BI.</li>
+						<li>Resolved 97% of support tickets within 20 minutes including on-field emergency support.</li>
+					</ul>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="square"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span>Internee Engineer Electrical</h3>
+					<p class="meta">CIVIC Engineering</p>
+					<p class="date">Jul 2021 - Dec 2021</p>
+					<p class="location">Lahore, Punjab, Pakistan</p>
+					<ul>
+						<li>Created large-scale residential/commercial wiring and power control panels using AutoCAD Electrical and SOLIDWORKS Electrical (quotes &gt; $30,000).</li>
+						<li>Inspected panels and BMS for NFPA / NEC compliance, achieving 100% compliance.</li>
+						<li>Selected PLCs, protective relays and wiring to reduce costs and increase product lifetime by up to 30%.</li>
+					</ul>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="square"><path d="M13 2L5 14h6l-1 8 8-12h-6l1-8z"/></svg></span>Electrical Engineering Intern</h3>
+					<p class="meta">Asia Board Industries Limited</p>
+					<p class="date">Jan 2021 - Jun 2021</p>
+					<p class="location">Karachi, Sindh, Pakistan</p>
+					<ul>
+						<li>Upgraded industrial automation hardware; programmed PLCs with Siemens SIMATIC STEP 7 and microcontrollers with Keil uVision embedded C/C++.</li>
+						<li>Enhanced chipboard and fiberboard products, increasing flexural strength by 15% (SAS/SPSS/Tableau).</li>
+						<li>Improved SCADA systems, reducing operation times by up to 25%.</li>
+					</ul>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><img src="/logos/nust.jpg" alt="NUST logo" /></span>Electrical Power &amp; Control Systems Undergraduate Research Assistant</h3>
+					<p class="meta">National University of Sciences and Technology (NUST)</p>
+					<p class="date">Jan 2018 - Dec 2020</p>
+					<p class="location">Karachi, Sindh, Pakistan</p>
+				</div>
+			</section>
+
+			<section class="resume">
+				<h2 role="button" tabindex="0" aria-expanded="true"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="square"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M7 11v5c0 1 2.5 3 5 3s5-2 5-3v-5"/></svg></span>Education<span class="toggle" aria-hidden="true">−</span></h2>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><img src="/logos/sdstate.jpg" alt="South Dakota State University logo" /></span>South Dakota State University</h3>
+					<p class="meta">Master of Science, Electrical and Electronics Engineering</p>
+					<p class="date">Jan 2022 – Aug 2024</p>
+					<p class="location">McComish Department of Electrical Engineering and Computer Science</p>
+					<p class="location">CGPA: 3.84/4</p>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><img src="/logos/sdstate.jpg" alt="South Dakota State University logo" /></span>South Dakota State University</h3>
+					<p class="meta">Master of Science, Data Science</p>
+					<p class="date">May 2022 – Aug 2024</p>
+					<p class="location">Department of Mathematics and Statistics</p>
+					<p class="location">CGPA: 3.84/4</p>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><img src="/logos/nust.jpg" alt="NUST logo" /></span>National University of Sciences and Technology (NUST)</h3>
+					<p class="meta">Bachelor of Engineering, Electrical and Electronics Engineering</p>
+					<p class="date">Aug 2017 – Jun 2021</p>
+					<p class="location">CGPA: 3.79/4</p>
+				</div>
+			</section>
+
+			<section class="resume">
+				<h2 role="button" tabindex="0" aria-expanded="true"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="square"><path d="M14 3H6v18h12V7l-4-4z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg></span>Projects<span class="toggle" aria-hidden="true">−</span></h2>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="square"><path d="M9 7V4H7v3H4v2h3v3h2V9h3V7H9z"/><path d="M13 13l7 7M20 13v7h-7"/></svg></span>(ARCBEV) A Rapid Charger for Battery Electric Vehicles</h3>
+					<p class="date">Jul 2020 – Jun 2021</p>
+					<ul>
+						<li>Engineered a 50kW, IoT-based, 3-phase DC fast-charger; 100% compliant with CharIN CCS standard.</li>
+						<li>Programmed hardware in embedded C/C++ and Rust; built Python/JavaScript interface on GNU/Linux.</li>
+						<li>Modular swap-in-swap-out design; 0 to 80% charge in under 30 minutes with commercial web interface.</li>
+					</ul>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="square"><path d="M4 12a8 8 0 0 1 16 0"/><path d="M7 12a5 5 0 0 1 10 0"/><circle cx="12" cy="12" r="1.5"/><path d="M12 14v7"/></svg></span>BrainSeek - Machine Learning Program to Predict Neurological Events Using EEG Data</h3>
+					<p class="date">Jan 2021 – Jun 2021</p>
+					<ul>
+						<li>Built ML software in Python and R to analyze EEG data; R-CNN labelling with 98% accuracy.</li>
+						<li>Implemented LSTM to extrapolate events (TensorFlow → PyTorch); TAES score of 92%.</li>
+					</ul>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="square"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="1.5" fill="#000"/><circle cx="15" cy="12" r="1.5" fill="#000"/><circle cx="8" cy="18" r="1.5" fill="#000"/></svg></span>Firing Angle Control Board for 3-Phase Power Electronic Converters and Motor Drives</h3>
+					<p class="date">Jan 2021 – Jun 2021</p>
+					<ul>
+						<li>Designed 3-phase firing angle control board; simulated with Simulink Simscape and NI LabVIEW.</li>
+						<li>Fabricated prototype PCB; achieved 0.5-degree precision with 100% accuracy.</li>
+						<li>Invented digital control interface for microcontroller / PLC (Siemens SIMATIC STEP 7).</li>
+					</ul>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="square"><path d="M5 13a7 7 0 0 1 14 0"/><path d="M4 13h16v2H4z"/><path d="M7 15v4h10v-4"/></svg></span>Smart Helmet for Motorcycle Riders for Enhanced Safety</h3>
+					<p class="date">Jul 2019 – Dec 2019</p>
+					<ul>
+						<li>Integrated helmet with single-board computer, speakers and sensor array (6-axis MEMS, thermal, IMU); &lt;1ms latency.</li>
+						<li>Relayed navigation, orientation, speed and collision detection — reducing serious injuries by 85%.</li>
+						<li>Developed companion Android app in Java calling emergency services within 15 seconds.</li>
+					</ul>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="square"><path d="M12 20v-8"/><circle cx="12" cy="10" r="2"/><path d="M8.5 13.5a5 5 0 0 1 7 0M6 16a8.5 8.5 0 0 1 12 0 8.5 8.5 0 0 1 0 0"/></svg></span>2.4 GHz Grounded Planar Antenna for Compact Applications</h3>
+					<p class="date">Jan 2019 – Jun 2019</p>
+					<ul>
+						<li>Simulated low-cost planar antenna for smartphones with Ansys HFSS and COMSOL; optimal 2.4 GHz absorption.</li>
+						<li>Fabricated at 1/40th commercial cost; validated 89% absorption with spectrum and vector network analyzers.</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="resume">
+				<h2 role="button" tabindex="0" aria-expanded="true"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="square"><circle cx="12" cy="9" r="5"/><path d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5"/><path d="M10 9h4"/></svg></span>Certifications<span class="toggle" aria-hidden="true">−</span></h2>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><img src="/logos/skm.jpg" alt="SKM Systems Analysis logo" /></span>SKM Power Systems Application: Protection &amp; Coordination + Arc Flash Evaluation (201 &amp; 202)</h3>
+					<p class="meta">SKM Systems Analysis, Inc</p>
+					<p class="date">Issued Aug 2025</p>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><img src="/logos/skm.jpg" alt="SKM Systems Analysis logo" /></span>Introduction to SKM Power Tools 1 &amp; 2 (101 &amp; 102)</h3>
+					<p class="meta">SKM Systems Analysis, Inc</p>
+					<p class="date">Issued Aug 2025</p>
+				</div>
+
+				<div class="card">
+					<h3><span class="logo" aria-hidden="true"><img src="/logos/piaic.jpg" alt="PIAIC logo" /></span>Artificial Intelligence (AI) &amp; Internet of Things (IoT)</h3>
+					<p class="meta">President's Initiative for Artificial Intelligence and Computing</p>
+					<p class="date">Issued Jan 2021</p>
+				</div>
+			</section>
 		</main>
 		<Footer />
+		<script>
+			const sections = document.querySelectorAll('section.resume');
+			sections.forEach((sec) => {
+				const h = sec.querySelector('h2');
+				const icon = h?.querySelector('.toggle');
+				const toggle = () => {
+					const collapsed = sec.classList.toggle('collapsed');
+					if (icon) icon.textContent = collapsed ? '+' : '−';
+					h?.setAttribute('aria-expanded', String(!collapsed));
+				};
+				h?.addEventListener('click', toggle);
+				h?.addEventListener('keydown', (e) => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						toggle();
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
